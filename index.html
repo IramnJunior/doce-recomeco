@@ -597,6 +597,74 @@
         }
 
         /* =========================================
+           NOTIFICAÇÕES DE COMPRA (POP-UP)
+           ========================================= */
+        .purchase-notification {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 350px;
+            z-index: 1500;
+            transform: translateX(-400px);
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            border-left: 4px solid var(--cta-green);
+        }
+
+        .purchase-notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .purchase-notification.hide {
+            transform: translateX(-400px);
+            opacity: 0;
+        }
+
+        .notification-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .notification-content {
+            flex-grow: 1;
+        }
+
+        .notification-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .notification-plan {
+            font-size: 0.85rem;
+            color: var(--text-body);
+        }
+
+        .notification-time {
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .purchase-notification {
+                left: 10px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+                bottom: 70px;
+            }
+        }
+
+        /* =========================================
            P) RODAPÉ
            ========================================= */
         footer {
@@ -1099,6 +1167,16 @@
         <span id="countdown-sticky">00:00:00</span>
     </div>
 
+    <!-- NOTIFICAÇÃO DE COMPRA -->
+    <div id="purchase-notification" class="purchase-notification">
+        <div class="notification-icon">🎉</div>
+        <div class="notification-content">
+            <div class="notification-name" id="notification-name"></div>
+            <div class="notification-plan" id="notification-plan"></div>
+            <div class="notification-time" id="notification-time"></div>
+        </div>
+    </div>
+
     <!-- SCRIPTS: Scroll Corrigido + Urgência Evergreen -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1174,6 +1252,64 @@
             // Inicializa e roda
             updateTimer();
             setInterval(updateTimer, 1000);
+
+            // ============================================
+            // 3) NOTIFICAÇÕES DE COMPRA
+            // ============================================
+            const names = [
+                'Maria Silva', 'João Santos', 'Ana Costa', 'Carlos Oliveira', 
+                'Juliana Souza', 'Roberto Lima', 'Fernanda Alves', 'Pedro Ferreira',
+                'Camila Rodrigues', 'Lucas Pereira', 'Patricia Martins', 'Ricardo Gomes',
+                'Mariana Cardoso', 'Bruno Ribeiro', 'Adriana Moreira', 'Rafael Barbosa'
+            ];
+
+            const plans = [
+                { name: 'Plano Essencial', emoji: '📱' },
+                { name: 'Plano Vendas', emoji: '📈' },
+                { name: 'Plano Completo', emoji: '⭐' }
+            ];
+
+            const notification = document.getElementById('purchase-notification');
+            const notificationName = document.getElementById('notification-name');
+            const notificationPlan = document.getElementById('notification-plan');
+            const notificationTime = document.getElementById('notification-time');
+
+            function showNotification() {
+                // Seleciona aleatoriamente
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomPlan = plans[Math.floor(Math.random() * plans.length)];
+                const randomMinutes = Math.floor(Math.random() * 30) + 1;
+
+                // Atualiza conteúdo
+                notificationName.textContent = randomName;
+                notificationPlan.textContent = `${randomPlan.emoji} Adquiriu o ${randomPlan.name}`;
+                notificationTime.textContent = `há ${randomMinutes} minuto${randomMinutes > 1 ? 's' : ''}`;
+
+                // Mostra notificação
+                notification.classList.add('show');
+
+                // Esconde após 5 segundos
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    notification.classList.add('hide');
+                    
+                    setTimeout(() => {
+                        notification.classList.remove('hide');
+                    }, 400);
+                }, 5000);
+            }
+
+            // VSL dura 1min25s (85 segundos)
+            // Programando 4 notificações durante a VSL para criar prova social
+            setTimeout(showNotification, 12000);  // 1ª notificação: 12 segundos
+            setTimeout(showNotification, 28000);  // 2ª notificação: 28 segundos
+            setTimeout(showNotification, 50000);  // 3ª notificação: 50 segundos
+            setTimeout(showNotification, 72000);  // 4ª notificação: 72 segundos
+
+            // Após a VSL, continua mostrando notificações a cada 20-30 segundos
+            let postVSLInterval = setInterval(() => {
+                showNotification();
+            }, 25000); // A cada 25 segundos após a VSL
         });
     </script>
 
