@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Doce Recomeço - Transforme ingredientes simples em uma renda extra realista. Método simples e direto.">
+    <title>Doce Recomeço - Método de Vendas e Receitas</title>
+    <style>
+        /* =========================================
+           VARIÁVEIS E RESET
+           ========================================= */
+        :root {
+            --bg-cream: #FDFBF7;
+            --bg-white: #FFFFFF;
+            --text-dark: #3E2723; /* Chocolate escuro */
+            --text-body: #5D4037; /* Marrom médio */
+            --primary-warm: #D84315; /* Laranja queimado/Caramelo */
+            --primary-gold: #C5A065; /* Dourado discreto */
+            --cta-green: #2E7D32; /* Verde conversão */
+            --cta-hover: #1B5E20;
+            --border-color: #EFEBE9;
+            --shadow-card: 0 4px 12px rgba(62, 39, 35, 0.08);
+            --radius: 12px;
+            --max-width: 1100px;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --header-height: 70px; /* Altura aproximada do header para cálculo de scroll */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-cream);
+            color: var(--text-body);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            padding-bottom: 60px; /* Espaço para a barra sticky */
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================
+           UTILITÁRIOS
+           ========================================= */
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .text-center { text-align: center; }
+        .flex-center { display: flex; justify-content: center; align-items: center; }
+        .grid { display: grid; gap: 20px; }
+        
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-dark);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-warm);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* =========================================
+           BOTÕES (CTA)
+           ========================================= */
+        .btn {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn:hover {
+            background-color: var(--cta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .microcopy {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* =========================================
+           A) BARRA SUPERIOR FIXA
+           ========================================= */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 15px 0;
+            height: var(--header-height); /* Altura fixa para cálculo */
+            display: flex;
+            align-items: center;
+        }
+
+        .sticky-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-warm);
+            letter-spacing: -0.5px;
+        }
+
+        .sticky-btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            width: auto;
+            max-width: none;
+        }
+
+        /* =========================================
+           B) HERO COM VÍDEO
+           ========================================= */
+        .hero {
+            padding: 80px 0 60px;
+            background: radial-gradient(circle at center, #fff 0%, var(--bg-cream) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-warm);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 16/9;
+            background: #000;
+            margin: 0 auto 30px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .hero-cta {
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           C) DOR & D) SOLUÇÃO
+           ========================================= */
+        .problem-section {
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .problem-text p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .problem-text .highlight {
+            color: var(--primary-warm);
+            font-weight: 700;
+        }
+
+        .solution-grid {
+            grid-template-columns: 1fr;
+            margin-top: 40px;
+        }
+
+        .pillar-card {
+            background: var(--bg-cream);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-warm);
+        }
+
+        .pillar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        /* =========================================
+           E) O QUE VOCÊ VAI RECEBER (5 MÓDULOS)
+           ========================================= */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            min-height: 250px; 
+        }
+
+        .module-cover {
+            width: 100%;
+            aspect-ratio: 4/5; 
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .module-info {
+            padding: 40px 20px; /* Aumentei o padding para compensar a falta de imagem */
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .module-title {
+            font-size: 1.3rem; /* Aumentei levemente o tamanho do título */
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .module-desc {
+            font-size: 1rem; /* Aumentei levemente o tamanho da descrição */
+            color: var(--text-body);
+        }
+
+        /* =========================================
+           G) AVALIAÇÕES RÁPIDAS (PESSOAS + ESTRELAS)
+           ========================================= */
+        .reviews-section {
+            background: var(--bg-white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile 1 coluna */
+            gap: 25px;
+        }
+
+        .review-card {
+            background: var(--bg-cream);
+            padding: 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .review-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-gold);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .stars {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        /* =========================================
+           H) PRINTS DE DEPOIMENTOS
+           ========================================= */
+        .testimonials-scroll {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-img {
+            border-radius: 15px;
+            border: 4px solid var(--bg-white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .testimonial-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* =========================================
+           I) PLANOS & PREÇOS
+           ========================================= */
+        .pricing-section {
+            background: var(--bg-white);
+            scroll-margin-top: 80px; /* Garante que o scroll pare no local certo */
+        }
+
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .plan-card {
+            background: var(--bg-cream);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* Destaque Plano 3 */
+        .plan-card.highlight {
+            border-color: var(--primary-gold);
+            background: linear-gradient(to bottom, #fff, var(--bg-cream));
+            box-shadow: 0 10px 30px rgba(197, 160, 101, 0.2);
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .badge-sold {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gold);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-warm);
+            margin: 20px 0;
+        }
+        .price-currency { font-size: 1.2rem; vertical-align: super; }
+
+        .plan-desc {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-body);
+            margin-bottom: 20px;
+            min-height: 50px;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Tabela Comparativa */
+        .comparison-table-wrapper {
+            margin-top: 50px;
+            overflow-x: auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th:first-child { text-align: left; }
+        
+        .feature-col { text-align: left; font-weight: 600; color: var(--text-dark); }
+
+        /* =========================================
+           J) OBJEÇÕES & O) FAQ
+           ========================================= */
+        details {
+            background: var(--bg-white);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            position: relative;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-warm);
+            font-weight: 300;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .details-content {
+            padding: 0 20px 20px;
+            color: var(--text-body);
+            font-size: 0.95rem;
+            border-top: 1px solid #f9f9f9;
+        }
+
+        /* =========================================
+           M) URGÊNCIA & N) CTA FINAL
+           ========================================= */
+        .urgency-box {
+            background: linear-gradient(135deg, var(--text-dark), #5D4037);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .urgency-box h3 {
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        #countdown {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            font-family: monospace;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* =========================================
+           STICKY BAR (NOVO)
+           ========================================= */
+        #sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--text-dark), #5D4037);
+            color: white;
+            padding: 12px 20px;
+            z-index: 2000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #sticky-bar p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #countdown-sticky {
+            font-weight: 700;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-family: monospace;
+        }
+
+        /* =========================================
+           P) RODAPÉ
+           ========================================= */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* =========================================
+           MEDIA QUERIES
+           ========================================= */
+        @media (min-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+            
+            .solution-grid { grid-template-columns: repeat(3, 1fr); }
+            .reviews-grid { grid-template-columns: repeat(3, 1fr); } /* Desktop 3 colunas */
+            
+            .plans-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- A) Barra Superior Fixa -->
+    <header class="sticky-header">
+        <div class="container sticky-content">
+            <div class="logo">Doce Recomeço</div>
+            <!-- Link para #planos (Correção aplicada: usa <a>) -->
+            <a href="#planos" class="btn sticky-btn">Quero começar agora</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- B) Hero -->
+        <section class="hero text-center">
+            <div class="container">
+                <h1>Transforme Ingredientes Simples em Renda Extra Realista</h1>
+                <p class="hero-sub">O método passo a passo para vender doces todo dia sem precisar de talento, apenas seguir o processo.</p>
+                
+                <!-- Embed do YouTube Real -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dd9TDV54aLc" title="VSL Doce Recomeço" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="hero-cta">
+                    <!-- Link para #planos (Correção aplicada: usa <a>) -->
+                    <a href="#planos" class="btn">QUERO COMEÇAR AGORA</a>
+                    <span class="microcopy">Acesso imediato • Conteúdo direto ao ponto • Sem enrolação</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- C) Identificação do Problema -->
+        <section class="section-padding problem-section">
+            <div class="container">
+                <div class="text-center problem-text">
+                    <p>Você trabalha, corre, e o dinheiro parece <span class="highlight">desaparecer no fim do mês...</span></p>
+                    <p>Quer uma renda extra, mas precisa de algo <span class="highlight">simples e possível</span> de encaixar na rotina.</p>
+                    <p style="margin-top: 20px; font-weight: 700; color: var(--text-dark);">Você não precisa de talento — precisa de um método.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- D) A Solução (3 Pilares) -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="text-center">
+                    <h2>O Método Doce Recomeço</h2>
+                </div>
+                <div class="grid solution-grid">
+                    <!-- Pilar 1 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🍰</div>
+                        <div class="pillar-title">1. Receitas Lucrativas</div>
+                        <p>Selecionamos as receitas de alto margem e baixo custo. Fáceis de fazer, deliciosas de vender.</p>
+                    </div>
+                    <!-- Pilar 2 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">⏱️</div>
+                        <div class="pillar-title">2. Rotina de Produção</div>
+                        <p>Como organizar seu tempo para produzir sem estresse, encaixando na sua rotina atual.</p>
+                    </div>
+                    <!-- Pilar 3 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">💰</div>
+                        <div class="pillar-title">3. Método de Vendas</div>
+                        <p>O passo a passo exato de como conseguir clientes e vender todo dia, sem depender de sorte.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E) O que você vai receber (5 Módulos - COM IMAGENS) -->
+        <section class="section-padding" style="background: white;">
+            <div class="container">
+                <div class="text-center">
+                    <h2>O que você vai receber</h2>
+                    <p>Acesso completo aos nossos 5 módulos/produtos essenciais</p>
+                </div>
+                <div class="modules-grid">
+                    <!-- Módulo 1 -->
+                    <div class="module-card">
+                        <!-- Imagem Adicionada: Mulher em cozinha rosa -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/d4559241-529f-46e4-b4bf-a52f68eca1b3.png?auth_key=1867583385-ce4ea984083b47abad0629b846e802e7-0-324c8a698c0cd5464662e8182a529726" alt="Modulo 1 - O Recomeço" class="module-cover" loading="lazy">
+                        <div class="module-info">
+                            <div class="module-title">O Recomeço</div>
+                            <div class="module-desc">Começa com a verdade, não com receita.</div>
+                        </div>
+                    </div>
+                    <!-- Módulo 2 -->
+                    <div class="module-card">
+                        <!-- Imagem Adicionada: Mulher mexendo tigela rosa -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/96e9f0fe-e360-4225-ad3a-147c2f89d11a.png?auth_key=1867583385-2073e6b7318b4456ad5c3043edbc20de-0-8cfb055da36917990240252c5af71833" alt="Modulo 2 - Receita que Dá Lucro" class="module-cover" loading="lazy">
+                        <div class="module-info">
+                            <div class="module-title">Receita que Dá Lucro</div>
+                            <div class="module-desc">Foco em receitas que trazem retorno financeiro.</div>
+                        </div>
+                    </div>
+                    <!-- Módulo 3 -->
+                    <div class="module-card">
+                        <!-- Imagem Adicionada: Mulher no balcão -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/e019f735-e9cf-4690-b327-4026e4c51458.png?auth_key=1867583385-8357bb5d5f8e45d280b49c44f8c87c9a-0-0a64d90ce7c9d4bc1249cfc46158b192" alt="Modulo 3 - Rotina que Gera Venda Diária" class="module-cover" loading="lazy">
+                        <div class="module-info">
+                            <div class="module-title">Rotina que Gera Venda Diária</div>
+                            <div class="module-desc">Sua fórmula para vendas todos os dias.</div>
+                        </div>
+                    </div>
+                    <!-- Módulo 4 -->
+                    <div class="module-card">
+                        <!-- Imagem Adicionada: Mulher com bolo decorado -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/a1f84b9a-56a4-4b85-b584-5fc60e1485a2.png?auth_key=1867583385-72a7e068b8dc499ab0103673c6c12c4e-0-b1ebd193bb8ad9a5843ede3607043266" alt="Modulo 4 - Escalando o Doce Recomeço" class="module-cover" loading="lazy">
+                        <div class="module-info">
+                            <div class="module-title">Escalando o Doce Recomeço</div>
+                            <div class="module-desc">De R$ 80/dia para R$ 150/dia com estratégia.</div>
+                        </div>
+                    </div>
+                    <!-- Módulo 5 -->
+                    <div class="module-card">
+                        <!-- Imagem Adicionada: Variedade de doces -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/39857db8-243a-4019-a42c-db53ac7bcf92.png?auth_key=1867583385-d26cedbf3f2848fbb88b8b045b30285b-0-2c62c6129aa98cfab4e7897319f2fd78" alt="Modulo 5 - Caderno de Receitas" class="module-cover" loading="lazy">
+                        <div class="module-info">
+                            <div class="module-title">Caderno de Receitas</div>
+                            <div class="module-desc">Rápido, barato e fácil de vender.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO REMOVIDA: Veja por dentro / Material -->
+
+        <!-- G) Avaliações Rápidas (Cards com Pessoas e Estrelas) -->
+        <section class="section-padding reviews-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Avaliações rápidas</h2>
+                </div>
+                <div class="reviews-grid">
+                    <!-- Pessoa 1 -->
+                    <div class="review-card">
+                        <img src="https://z-cdn-media.chatglm.cn/files/96ae2433-5214-476c-812c-955b317b31cc.jpg?auth_key=1867065182-c905739193f94177b95d8aaf2e1bb4cb-0-c7a3ceb2283902ae089cfa8381c64af7" alt="Foto de Cliente 1" class="review-avatar">
+                        <div class="stars" aria-label="5 estrelas">★★★★★</div>
+                        <p class="review-text">"Simples e prático."</p>
+                    </div>
+                    <!-- Pessoa 2 -->
+                    <div class="review-card">
+                        <img src="https://z-cdn-media.chatglm.cn/files/ffd01671-72f2-4c93-9407-1226205a9d6d.jpg?auth_key=1867065182-1a27d0ba71e64aea800dbe55b824e202-0-82a969b4e5b296f7af6f6563e2274b1f" alt="Foto de Cliente 2" class="review-avatar">
+                        <div class="stars" aria-label="5 estrelas">★★★★★</div>
+                        <p class="review-text">"Comecei no mesmo dia."</p>
+                    </div>
+                    <!-- Pessoa 3 -->
+                    <div class="review-card">
+                        <img src="https://z-cdn-media.chatglm.cn/files/beb35f1a-406c-4b2c-8081-ae9535520c6a.jpg?auth_key=1867065182-cb12a16d46e246958cd70eebab3ce14f-0-a186c765bbc9fc531fe377ac46fbcf16" alt="Foto de Cliente 3" class="review-avatar">
+                        <div class="stars" aria-label="5 estrelas">★★★★★</div>
+                        <p class="review-text">"Direto ao ponto."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- H) Prints de Depoimentos -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Depoimentos dos Alunos</h2>
+                    <p style="margin-bottom: 30px;">Resultados reais enviados por WhatsApp</p>
+                </div>
+                <div class="testimonials-scroll">
+                    <!-- Comentario 1 -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/f29012dc-3da8-4814-a55a-bf5186b644cd.png?auth_key=1867065182-751a442887f54520b52c6244ffce9d7a-0-c8d8939797482c4c6f9d7d39040e290b" alt="Depoimento Renata" class="testimonial-img">
+                    <!-- Comentario 2 -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/d86b0012-e9de-4075-98a6-07ecda9e518c.png?auth_key=1867065182-844ef677b492449295e0d31e017565fd-0-e8fb0182ad3d59d47195af3f320a64c9" alt="Depoimento Isadora" class="testimonial-img">
+                    <!-- Comentario 3 -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/02137788-c1bb-42a1-83c9-c184204fa739.png?auth_key=1867065182-24b6bb087c3b4efea38cfb069a22293f-0-6edf9fe11b63d3394f02c3423c502bde" alt="Depoimento Rafa" class="testimonial-img">
+                    <!-- Comentario 4 -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/49ca30a2-19e0-4dbd-8ae7-587cac600b25.png?auth_key=1867065182-8309fc8f70bb4525a8c3924358b1c403-0-2d5261afa793e4683092e0c26a367f52" alt="Depoimento Cristina" class="testimonial-img">
+                    <!-- Comentario 5 -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/65cd6e35-0f79-47f9-aea3-d6b369d3b9db.png?auth_key=1867065182-c09f209701cf4751bd1d9142725289dd-0-789e0556fdcedea7816fadf4ca253f28" alt="Depoimento Francisco" class="testimonial-img">
+                </div>
+                <!-- Botão "Quero fazer parte" REMOVIDO conforme instrução -->
+            </div>
+        </section>
+
+        <!-- I) Oferta e Planos -->
+        <section id="planos" class="section-padding pricing-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Escolha seu Plano</h2>
+                    <p>Comece sua transformação hoje mesmo</p>
+                </div>
+
+                <div class="plans-container">
+                    <!-- Plano 1 (Link Kirvano) -->
+                    <div class="plan-card">
+                        <h3>Plano Essencial</h3>
+                        <div class="price-tag"><span class="price-currency">R$</span> 9,90</div>
+                        <p class="plan-desc">você terá acesso apenas ao nosso caderno de receita</p>
+                        <ul class="plan-features">
+                            <li>📱 Acesso imediato</li>
+                            <li>📄 Formato digital</li>
+                            <li>📱 Consumo no celular</li>
+                        </ul>
+                        <a href="https://pay.kirvano.com/1a3c2c9b-10bb-4fa6-a012-82e648f47dce" target="_blank" class="btn btn-full" style="margin-top: 20px;">Quero esse plano</a>
+                        <span class="microcopy">Acesso imediato após o pagamento</span>
+                    </div>
+
+                    <!-- Plano 3 (Destaque) (Link Kirvano) -->
+                    <div class="plan-card highlight">
+                        <div class="badge-sold">Mais Vendido</div>
+                        <h3>Plano Completo</h3>
+                        <div class="price-tag"><span class="price-currency">R$</span> 19,90</div>
+                        <p class="plan-desc">você tera acesso vitalicio, suporte e receberá as atualizações posteriores</p>
+                        <ul class="plan-features">
+                            <li>✅ Tudo incluso</li>
+                            <li>✅ Suporte dedicado</li>
+                            <li>✅ Atualizações gratuitas</li>
+                            <li>✅ Acesso vitalício</li>
+                        </ul>
+                        <a href="https://pay.kirvano.com/45f626db-1f1f-4aca-9a0a-7223986710ad" target="_blank" class="btn btn-full" style="margin-top: 20px;">Quero esse plano</a>
+                        <span class="microcopy">Acesso imediato após o pagamento</span>
+                    </div>
+
+                    <!-- Plano 2 (Link Kirvano) -->
+                    <div class="plan-card">
+                        <h3>Plano Vendas</h3>
+                        <div class="price-tag"><span class="price-currency">R$</span> 14,90</div>
+                        <p class="plan-desc">um plano intermediario que da acesso apenas ao metodo de vendas sem o nosso caderno de receitas</p>
+                        <ul class="plan-features">
+                            <li>📈 Passo a passo para vender</li>
+                            <li>🤝 Abordagem e clientes</li>
+                            <li>🗓️ Rotina e organização</li>
+                        </ul>
+                        <a href="https://pay.kirvano.com/4da12a90-fd9c-4e31-8647-64dd2dc34cf6" target="_blank" class="btn btn-full" style="margin-top: 20px;">Quero esse plano</a>
+                        <span class="microcopy">Acesso imediato após o pagamento</span>
+                    </div>
+                </div>
+
+                <!-- Tabela Comparativa -->
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="feature-col">Recursos</th>
+                                <th>Essencial<br><small>R$ 9,90</small></th>
+                                <th>Vendas<br><small>R$ 14,90</small></th>
+                                <th>Completo<br><small>R$ 19,90</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="feature-col">Caderno de Receitas</td>
+                                <td>✅</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">Método de Vendas</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">Suporte</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">Atualizações</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">Acesso Vitalício</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- J) Objeções -->
+        <section class="section-padding">
+            <div class="container" style="max-width: 800px;">
+                <div class="text-center">
+                    <h2>Perguntas Frequentes</h2>
+                </div>
+                
+                <details>
+                    <summary>Não sei vender</summary>
+                    <div class="details-content">
+                        O Doce Recomeço ensina exatamente como vender, desde a abordagem até o pós-venda. Você não precisa ter experiência, apenas seguir o roteiro.
+                    </div>
+                </details>
+                <details>
+                    <summary>Tenho pouco tempo</summary>
+                    <div class="details-content">
+                        O método foi desenhado para quem tem rotina corrida. Ensinamos a organizar a produção em poucas horas da semana.
+                    </div>
+                </details>
+                <details>
+                    <summary>Tenho pouco dinheiro pra começar</summary>
+                    <div class="details-content">
+                        As receitas selecionadas utilizam ingredientes baratos e de fácil acesso. O investimento inicial é mínimo comparado ao retorno.
+                    </div>
+                </details>
+                <details>
+                    <summary>Moro em cidade pequena</summary>
+                    <div class="details-content">
+                        Não há problema. A demanda por doces artesanais é constante, e o método ensina como encontrar seu público em qualquer lugar.
+                    </div>
+                </details>
+                <details>
+                    <summary>Tenho medo de não conseguir</summary>
+                    <div class="details-content">
+                        O medo é natural. Por isso, oferecemos suporte para tirar suas dúvidas. O segredo é a consistência, e estaremos com você.
+                    </div>
+                </details>
+                <details>
+                    <summary>Já tentei outras coisas</summary>
+                    <div class="details-content">
+                        Muitos alunos já tentaram outros cursos sem sucesso. A diferença do Doce Recomeço é a simplicidade e o foco no que realmente dá dinheiro.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- K) BÔNUS REMOVIDO CONFORME SOLICITAÇÃO -->
+
+        <!-- M) Urgência (Evergreen 24h) -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="urgency-box">
+                    <h3>⚠️ Atenção</h3>
+                    <p>Essa condição especial válida apenas para:</p>
+                    <div id="countdown">00:00:00</div>
+                    <small>As inscrições podem ser encerradas a qualquer momento após esse período.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- N) CTA Final -->
+        <section class="section-padding text-center" style="background: var(--bg-cream);">
+            <div class="container">
+                <h2>Não deixe pra depois o que você pode começar hoje</h2>
+                <ul style="text-align: left; margin: 20px auto; max-width: 400px;">
+                    <li>✅ Receitas fáceis e lucrativas</li>
+                    <li>✅ Método de vendas comprovado</li>
+                    <li>✅ Renda extra realista</li>
+                </ul>
+                <!-- Link para #planos (Correção aplicada: usa <a>) -->
+                <a href="#planos" class="btn">Escolher meu plano agora</a>
+            </div>
+        </section>
+
+        <!-- O) FAQ Completo -->
+        <section class="section-padding" style="background: white;">
+            <div class="container" style="max-width: 800px;">
+                <div class="text-center">
+                    <h2>FAQ - Tire suas dúvidas</h2>
+                </div>
+
+                <details>
+                    <summary>O que eu recebo em cada plano?</summary>
+                    <div class="details-content">
+                        O Plano Essencial inclui apenas o caderno de receitas. O Plano Vendas inclui apenas o método comercial. O Plano Completo une os dois + suporte + atualizações.
+                    </div>
+                </details>
+                <details>
+                    <summary>Como acesso?</summary>
+                    <div class="details-content">
+                        Imediatamente após a confirmação do pagamento, você recebe um e-mail com os dados de acesso à nossa área de membros.
+                    </div>
+                </details>
+                <details>
+                    <summary>Serve pra iniciantes?</summary>
+                    <div class="details-content">
+                        Sim! O método foi criado pensando em quem nunca fez doces para vender antes. Passo a passo detalhado.
+                    </div>
+                </details>
+                <details>
+                    <summary>Preciso de experiência?</summary>
+                    <div class="details-content">
+                        Não. Se você sabe mexer no fogão e seguir instruções, já consegue aplicar o método.
+                    </div>
+                </details>
+                <details>
+                    <summary>Preciso de equipamentos?</summary>
+                    <div class="details-content">
+                        Apenas os básicos de cozinha que você já tem em casa. Não é necessário equipamento industrial para começar.
+                    </div>
+                </details>
+                <details>
+                    <summary>Quanto tempo por dia?</summary>
+                    <div class="details-content">
+                        Você pode dedicar de 1 a 2 horas por dia para produção e vendas, adaptando à sua rotina.
+                    </div>
+                </details>
+                <details>
+                    <summary>Em quanto tempo vejo resultado?</summary>
+                    <div class="details-content">
+                        Os resultados variam de acordo com a aplicação de cada um. Alunos relatam vendas já na primeira semana de produção.
+                    </div>
+                </details>
+                <details>
+                    <summary>Suporte funciona como?</summary>
+                    <div class="details-content">
+                        Através de um grupo exclusivo ou canal de suporte direto (dependendo do plano), onde você pode tirar dúvidas.
+                    </div>
+                </details>
+                <details>
+                    <summary>Atualizações como recebo?</summary>
+                    <div class="details-content">
+                        Todas as atualizações de receitas e métodos são enviadas automaticamente para o seu e-mail e postadas na área de membros.
+                    </div>
+                </details>
+                <details>
+                    <summary>Posso acessar pelo celular?</summary>
+                    <div class="details-content">
+                        Sim, nossa plataforma é 100% responsiva e otimizada para celulares e tablets.
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <!-- P) Rodapé -->
+    <footer>
+        <div class="container">
+            <h3>Doce Recomeço</h3>
+            <!-- E-mail Corrigido -->
+            <p>Contato: contatodocerecomeco@gmail.com</p>
+            <div style="margin: 20px 0;">
+                <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a>
+            </div>
+            <div class="disclaimer">
+                <p>Aviso Responsável: Os resultados podem variar de pessoa para pessoa. Não prometemos renda garantida ou enriquecimento rápido. O sucesso depende da aplicação do método e esforço individual.</p>
+                <p>&copy; 2023 Doce Recomeço. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BARRA STICKY DO COUNTDOWN -->
+    <div id="sticky-bar">
+        <p>Condição acaba em:</p>
+        <span id="countdown-sticky">00:00:00</span>
+    </div>
+
+    <!-- SCRIPTS: Scroll Corrigido + Urgência Evergreen -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // ============================================
+            // 1) NAVEGAÇÃO GARANTIDA (CORREÇÃO DE BUG)
+            // ============================================
+            const planLinks = document.querySelectorAll('a[href="#planos"]');
+            
+            planLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Impede comportamento padrão que pode falhar
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const headerOffset = 80; // Altura do header sticky + margem
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // ============================================
+            // 2) COUNTDOWN EVERGREEN (MAIN + STICKY)
+            // ============================================
+            const countdownElement = document.getElementById('countdown');
+            const countdownSticky = document.getElementById('countdown-sticky');
+            const duration = 24 * 60 * 60 * 1000; // 24 horas
+            const storageKey = 'promoDeadline';
+
+            let deadline = localStorage.getItem(storageKey);
+            const now = new Date().getTime();
+
+            if (!deadline || parseInt(deadline) < now) {
+                deadline = now + duration;
+                localStorage.setItem(storageKey, deadline);
+            }
+
+            function updateTimer() {
+                const currentTime = new Date().getTime();
+                const distance = deadline - currentTime;
+
+                if (distance < 0) {
+                    const expiredMsg = "OFERTA EXPIRADA";
+                    countdownElement.innerHTML = expiredMsg;
+                    countdownElement.style.color = "#ffcccc";
+                    countdownSticky.innerHTML = expiredMsg;
+                    countdownSticky.style.color = "#ffcccc";
+                    return;
+                }
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const fHours = hours < 10 ? "0" + hours : hours;
+                const fMinutes = minutes < 10 ? "0" + minutes : minutes;
+                const fSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+                const timeString = `${fHours}:${fMinutes}:${fSeconds}`;
+                
+                // Atualiza ambos os elementos
+                countdownElement.innerHTML = timeString;
+                countdownSticky.innerHTML = timeString;
+            }
+
+            // Inicializa e roda
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        });
+    </script>
+
+</body>
+</html>
